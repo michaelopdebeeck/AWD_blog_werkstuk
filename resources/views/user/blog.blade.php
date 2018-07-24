@@ -1,12 +1,16 @@
 @extends('user/index')
 
+@section('bg-img', asset('/user/img/home-bg.jpg'))
+@section('title', "Mic's blog")
+@section('sub-title', 'the daily life of a student')
+
 @section('main-content')
     <!-- Main Content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{{ route('blogpost') }}">
                         <h2 class="post-title">
                             Man must explore, and this is exploration at its greatest
                         </h2>

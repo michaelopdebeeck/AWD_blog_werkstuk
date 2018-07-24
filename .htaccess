@@ -1,0 +1,7 @@
+<IfModule mod_rewite.c>
+RewriteEngine on
+RewriteBase /AWD_blog_werkstuk/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>

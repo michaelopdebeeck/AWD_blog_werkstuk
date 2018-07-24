@@ -1,5 +1,9 @@
 @extends('user/index')
 
+@section('bg-img', asset('/user/img/post-bg.jpg'))
+@section('title', "Mic's post")
+@section('sub-title', 'een nieuw artikel')
+
 @section('main-content')
     <!-- Post Content -->
     <article>

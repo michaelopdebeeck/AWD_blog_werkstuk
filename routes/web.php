@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('user/blog');
 });
 
-Route::get('/blogpost', function() {
+Route::get('blogpost', function() {
    return view('user/blogpost');
 })->name('blogpost');

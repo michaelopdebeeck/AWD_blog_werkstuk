@@ -1,6 +1,6 @@
 @extends('user/index')
 
-@section('bg-img', asset('/user/img/post-bg.jpg'))
+@section('bg-img', asset('public/user/img/post-bg.jpg'))
 @section('title', "Mic's post")
 @section('sub-title', 'een nieuw artikel')
 

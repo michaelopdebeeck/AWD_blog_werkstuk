@@ -1,4 +1,4 @@
-@extends('user/index')
+@extends('user.layouts.index')
 
 @section('bg-img', asset('public/user/img/post-bg.jpg'))
 @section('title', "Mic's post")

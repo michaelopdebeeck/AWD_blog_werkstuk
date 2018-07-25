@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('user/blog');
+    return view('user.blog');
 });
 
 Route::get('blogpost', function() {
-   return view('user/blogpost');
+    return view('user.blogpost');
 })->name('blogpost');
+
+Route::get('admin', function() {
+    return view('admin.admin');
+})->name('admin');

@@ -22,3 +22,15 @@ Route::get('blogpost', function() {
 Route::get('admin', function() {
     return view('admin.admin');
 })->name('admin');
+
+Route::get('admin/blogpost', function() {
+    return view('admin.blogpost.blogpost');
+})->name('newBlogpost');
+
+Route::get('admin/tag', function() {
+    return view('admin.tag.tag');
+})->name('tag');
+
+Route::get('admin/categorie', function() {
+    return view('admin.categorie.categorie');
+})->name('categorie');

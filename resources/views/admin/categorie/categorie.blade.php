@@ -25,7 +25,9 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        @include('partials.errrors')
+                        <form role="form" action="{{ route('categorie.store') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="box-body">
                                 <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">

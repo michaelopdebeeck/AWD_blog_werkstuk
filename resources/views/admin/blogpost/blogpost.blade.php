@@ -28,13 +28,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-
-                        @if (count($errors) > 0)
-                            @foreach($errors->all() as $error)
-                                <p class="alert alert-danger">{{ $error }}</p>
-                            @endforeach
-                        @endif
-
+                        @include('partials.errrors')
                         <form role="form" action="{{ route('blogpost.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="box-body">

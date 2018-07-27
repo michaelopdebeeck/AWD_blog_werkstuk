@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\user\blogpost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,7 +36,24 @@ class BlogpostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'titel' => 'required',
+            'subtitel' => 'required',
+            'slug' => 'required',
+            'body' => 'required'
+        ]);
+
+        $blogpost = new blogpost();
+
+        $blogpost->title = $request->titel;
+        $blogpost->subtitle = $request->subtitel;
+        $blogpost->slug = $request->slug;
+        $blogpost->body = $request->body;
+
+        $blogpost->save();
+
+        return redirect(route('blogpost.index'));
+
     }
 
     /**

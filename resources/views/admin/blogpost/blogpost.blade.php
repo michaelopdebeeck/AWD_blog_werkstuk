@@ -28,21 +28,32 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+
+                        @if (count($errors) > 0)
+                            @foreach($errors->all() as $error)
+                                <p class="alert alert-danger">{{ $error }}</p>
+                            @endforeach
+                        @endif
+
+                        <form role="form" action="{{ route('blogpost.store') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="box-body">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="titel">Titel</label>
+                                        <label for="titel">Blogpost titel</label>
                                         <input type="text" class="form-control" id="titel" name="titel" placeholder="Geef een titel in">
                                     </div>
+
                                     <div class="form-group">
                                         <label for="subtitel">Subtitel</label>
                                         <input type="text" class="form-control" id="subtitel" name="subtitel" placeholder="Geef een subtitel in">
                                     </div>
+
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug van de blogpost">
+                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
                                     </div>
+
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -58,27 +69,31 @@
                                 </div>
                             </div>
                             <!-- /.box-body -->
+
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Tekst blogpost</h3>
+                                    <h3 class="box-title">Write Post Body Here
+                                        <small>Simple and fast</small>
+                                    </h3>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                                title="Collapse">
+                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                             <i class="fa fa-minus"></i></button>
                                     </div>
                                     <!-- /. tools -->
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
-                                    <form>
-                                <textarea class="textarea" name="blogpost-tekst" placeholder="Place some text here"
-                                          style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </form>
+                                    <textarea class="textarea" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
                                 </div>
                             </div>
+
+
+
+
+
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <input type="submit" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

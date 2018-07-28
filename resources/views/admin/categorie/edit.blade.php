@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Categorie<small>categorie bewerken</small></h1>
+            <h1>Categorie<small>bewerken</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">

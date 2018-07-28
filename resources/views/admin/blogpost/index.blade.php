@@ -44,13 +44,13 @@
                                     <td>{{ $blogpost->subtitle }}</td>
                                     <td>{{ $blogpost->slug }}</td>
                                     <td>{{ $blogpost->created_at }}</td>
-                                    <td><a href="{{ route('blogpost.edit', $blogpost->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    <td><a class="col-lg-offset-5" href="{{ route('blogpost.edit', $blogpost->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     <td>
                                         <form id="delete-form-{{ $blogpost->id  }}" method="post" action="{{ route('blogpost.destroy', $blogpost->id) }}" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
-                                        <a href="#" onclick="if(confirm('Bent u zeker dat u de blogpost wilt verwijderen?')) {
+                                        <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de blogpost wilt verwijderen?')) {
                                             event.preventDefault(); document.getElementById('delete-form-{{ $blogpost->id }}').submit();
                                         } else {
                                             event.preventDefault();

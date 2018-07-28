@@ -15,7 +15,8 @@ class BlogpostController extends Controller
      */
     public function index()
     {
-        return view('admin.blogpost.index');
+        $blogposts = blogpost::all();
+        return view('admin.blogpost.index', compact('blogposts'));
     }
 
     /**
@@ -75,7 +76,8 @@ class BlogpostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blogpost = blogpost::where('id', $id)->first();
+        return view('admin.blogpost.edit', compact('blogpost'));
     }
 
     /**
@@ -87,7 +89,23 @@ class BlogpostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'titel' => 'required',
+            'subtitel' => 'required',
+            'slug' => 'required',
+            'body' => 'required'
+        ]);
+
+        $blogpost = blogpost::find($id);
+
+        $blogpost->title = $request->titel;
+        $blogpost->subtitle = $request->subtitel;
+        $blogpost->slug = $request->slug;
+        $blogpost->body = $request->body;
+
+        $blogpost->save();
+
+        return redirect(route('blogpost.index'));
     }
 
     /**
@@ -98,6 +116,7 @@ class BlogpostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        blogpost::where('id', $id)->delete();
+        return redirect()->back();
     }
 }

@@ -1,31 +1,17 @@
 @extends('admin.layouts.index')
-
 @section('main-content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Text Editors
-                <small>Advanced form element</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Forms</a></li>
-                <li class="active">Editors</li>
-            </ol>
+            <h1>Nieuwe tag<small>nieuwe tag aanmaken</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Nieuwe tag</h3>
-                        </div>
+
                         <!-- /.box-header -->
                         <!-- form start -->
                         @include('partials.errrors')
@@ -43,6 +29,7 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>
+                                        <a class="btn btn-default" href="{{ route('tag.index') }}">Terug</a>
                                     </div>
                                 </div>
 

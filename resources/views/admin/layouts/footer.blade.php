@@ -37,6 +37,9 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('public/admin/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('public/admin/dist/js/pages/dashboard.js') }}"></script>
+<!--<script src=" //asset('public/admin/dist/js/pages/dashboard.js') "></script>-->
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('public/admin/dist/js/demo.js') }}"></script>
+<!--<script src=" //asset('public/admin/dist/js/demo.js') "></script>-->
+
+@section('footerSection')
+    @show

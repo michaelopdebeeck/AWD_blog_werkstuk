@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Categorie<small>nieuwe categorie aanmaken</small></h1>
+            <h1>Nieuwe tag<small>tag bewerken</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -14,21 +14,22 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         @include('partials.errrors')
-                        <form role="form" action="{{ route('categorie.store') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('tag.update', $tag->id) }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="box-body">
                                 <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">
-                                        <label for="name">Categorie titel</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Geef een categorie titel in">
+                                        <label for="name">Tag titel</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ $tag->name }}" placeholder="Geef een tag titel in">
                                     </div>
                                     <div class="form-group">
-                                        <label for="slug">Categorie slug</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug van de categorie">
+                                        <label for="slug">Tag slug</label>
+                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ $tag->slug }}" placeholder="Slug van de tag">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>
-                                        <a class="btn btn-default" href="{{ route('categorie.index') }}">Terug</a>
+                                        <a class="btn btn-default" href="{{ route('tag.index') }}">Terug</a>
                                     </div>
                                 </div>
 

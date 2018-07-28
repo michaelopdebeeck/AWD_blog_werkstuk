@@ -33,7 +33,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('blogpost.index' )}}"><i class="fa fa-circle-o"></i>Posts</a></li>
+                    <li class="active"><a href="{{ route('blogpost.index' )}}"><i class="fa fa-circle-o"></i>Blogposts</a></li>
                     <li class="active"><a href="{{ route('categorie.index' )}}"><i class="fa fa-circle-o"></i>Categorieën</a></li>
                     <li class="active"><a href="{{ route('tag.index' )}}"><i class="fa fa-circle-o"></i>Tags</a></li>
                     <li class="active"><a href="{{ route('user.index' )}}"><i class="fa fa-circle-o"></i>Users</a></li>

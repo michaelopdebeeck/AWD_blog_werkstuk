@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Categorie<small>nieuwe categorie aanmaken</small></h1>
+            <h1>Categorie<small>categorie bewerken</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -14,17 +14,18 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         @include('partials.errrors')
-                        <form role="form" action="{{ route('categorie.store') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('categorie.update', $categorie->id) }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="box-body">
                                 <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">
                                         <label for="name">Categorie titel</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Geef een categorie titel in">
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ $categorie->name }}" placeholder="Geef een categorie titel in">
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Categorie slug</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug van de categorie">
+                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ $categorie->slug }}" placeholder="Slug van de categorie">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>

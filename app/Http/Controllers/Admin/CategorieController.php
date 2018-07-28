@@ -15,7 +15,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        return view('admin.categorie.index');
+        $categorieen = categorie::all();
+        return view('admin.categorie.index', compact('categorieen'));
     }
 
     /**
@@ -70,7 +71,8 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorie = categorie::where('id', $id)->first();
+        return view('admin.categorie.edit', compact('categorie'));
     }
 
     /**
@@ -82,7 +84,19 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'slug' => 'required'
+        ]);
+
+        $categorie = categorie::find($id);
+
+        $categorie->name = $request->name;
+        $categorie->slug = $request->slug;
+
+        $categorie->save();
+
+        return redirect(route('categorie.index'));
     }
 
     /**
@@ -93,6 +107,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        categorie::where('id', $id)->delete();
+        return redirect()->back();
     }
 }

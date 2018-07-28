@@ -1,14 +1,10 @@
 @extends('admin.layouts.index')
-
 @section('main-content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Blogpost<small>Nieuwe blogpost aanmaken</small></h1>
+            <h1>Blogpost<small>blogpost bewerken</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -18,23 +14,24 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         @include('partials.errrors')
-                        <form role="form" action="{{ route('blogpost.store') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('blogpost.update', $blogpost->id) }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="box-body">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="titel">Blogpost titel</label>
-                                        <input type="text" class="form-control" id="titel" name="titel" placeholder="Geef een titel in">
+                                        <input type="text" class="form-control" id="titel" name="titel" value="{{ $blogpost->title }}" placeholder="Geef een titel in">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="subtitel">Subtitel</label>
-                                        <input type="text" class="form-control" id="subtitel" name="subtitel" placeholder="Geef een subtitel in">
+                                        <input type="text" class="form-control" id="subtitel" name="subtitel" value="{{ $blogpost->subtitle }}" placeholder="Geef een subtitel in">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
+                                        <input type="text" class="form-control" id="slug" name="slug" value="{{ $blogpost->slug }}" placeholder="Slug">
                                     </div>
 
                                 </div>
@@ -46,7 +43,7 @@
                                     <br>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="status"> Publiceer blogpost?
+                                            <input type="checkbox" name="status" @if( $blogpost->status == 1 ) checked @endif> Publiceer blogpost?
                                         </label>
                                     </div>
                                 </div>
@@ -64,7 +61,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
-                                    <textarea class="textarea" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+                                    <textarea class="textarea" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $blogpost->body }}</textarea>
                                 </div>
                             </div>
                             <div class="box-footer">

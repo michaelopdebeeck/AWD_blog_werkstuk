@@ -1,4 +1,8 @@
 @extends('admin.layouts.index')
+@section('headSection')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('public/admin/bower_components/select2/dist/css/select2.min.css') }}">
+@endsection
 @section('main-content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -40,10 +44,26 @@
                                         <label for="image">File input</label>
                                         <input type="file" name="image"id="image">
                                     </div>
+                                    <div class="form-group" style="margin-top: 30px;">
+                                        <label>Categorie</label>
+                                        <select class="form-control select2" multiple="multiple" name="categorieen[]" data-placeholder="Kies een categorie" style="width: 100%;">
+                                            @foreach($categorieen as $categorie)
+                                                <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group" style="margin-top: 18px;">
+                                        <label>Tags</label>
+                                        <select class="form-control select2" multiple="multiple" name="tags[]" data-placeholder="Kies tags" style="width: 100%;">
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <br>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="status" @if( $blogpost->status == 1 ) checked @endif> Publiceer blogpost?
+                                            <input type="checkbox" name="status" value="1" @if( $blogpost->status == 1 ) checked @endif> Publiceer blogpost?
                                         </label>
                                     </div>
                                 </div>
@@ -78,4 +98,13 @@
         </section>
         <!-- /.content -->
     </div>
+@endsection
+@section('footerSection')
+    <!-- Select2 -->
+    <script src="{{asset('public/admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
 @endsection

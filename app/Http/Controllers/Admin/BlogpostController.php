@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\user\blogpost;
+use App\Model\user\categorie;
+use App\Model\user\tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +28,9 @@ class BlogpostController extends Controller
      */
     public function create()
     {
-        return view('admin.blogpost.blogpost');
+        $categorieen = categorie::all();
+        $tags = tag::all();
+        return view('admin.blogpost.blogpost', compact('categorieen', 'tags'));
     }
 
     /**
@@ -49,9 +53,11 @@ class BlogpostController extends Controller
         $blogpost->title = $request->titel;
         $blogpost->subtitle = $request->subtitel;
         $blogpost->slug = $request->slug;
+        $blogpost->status = $request->status;
         $blogpost->body = $request->body;
-
         $blogpost->save();
+        $blogpost->tags()->sync($request->tags);
+        $blogpost->categorieen()->sync($request->categorieen);
 
         return redirect(route('blogpost.index'));
 
@@ -77,7 +83,9 @@ class BlogpostController extends Controller
     public function edit($id)
     {
         $blogpost = blogpost::where('id', $id)->first();
-        return view('admin.blogpost.edit', compact('blogpost'));
+        $categorieen = categorie::all();
+        $tags = tag::all();
+        return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));
     }
 
     /**
@@ -101,7 +109,10 @@ class BlogpostController extends Controller
         $blogpost->title = $request->titel;
         $blogpost->subtitle = $request->subtitel;
         $blogpost->slug = $request->slug;
+        $blogpost->status = $request->status;
         $blogpost->body = $request->body;
+        $blogpost->tags()->sync($request->tags);
+        $blogpost->categorieen()->sync($request->categorieen);
 
         $blogpost->save();
 

@@ -14,9 +14,9 @@ class CreateCategorieBlogpostsTable extends Migration
     public function up()
     {
         Schema::create('categorie_blogposts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('blogpost_id');
-            $table->integer('categorie_id');
+            $table->integer('blogpost_id')->unsigned()->index();
+            $table->integer('categorie_id')->unsigned()->index();
+            $table->foreign('blogpost_id')->references('id')->on('blogposts')->onDelete('cascade');
             $table->timestamps();
         });
     }

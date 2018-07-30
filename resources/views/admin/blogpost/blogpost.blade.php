@@ -80,7 +80,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
-                                    <textarea class="textarea" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+                                    <textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
                                 </div>
                             </div>
                             <div class="box-footer">
@@ -100,10 +100,21 @@
 @endsection
 @section('footerSection')
     <!-- Select2 -->
-    <script src="{{asset('public/admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('public/admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- CK Editor -->
+    <script src="{{ asset('public/admin/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="{{ asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.select2').select2();
         });
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1')
+            //bootstrap WYSIHTML5 - text editor
+            $('.textarea').wysihtml5()
+        })
     </script>
 @endsection

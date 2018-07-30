@@ -48,7 +48,13 @@
                                         <label>Categorie</label>
                                         <select class="form-control select2" multiple="multiple" name="categorieen[]" data-placeholder="Kies een categorie" style="width: 100%;">
                                             @foreach($categorieen as $categorie)
-                                                <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                                <option value="{{ $categorie->id }}"
+                                                @foreach($blogpost->categorieen as $blogpostCategorieen)
+                                                    @if($blogpostCategorieen->id == $categorie->id)
+                                                        selected
+                                                    @endif
+                                                @endforeach
+                                                >{{ $categorie->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -56,7 +62,13 @@
                                         <label>Tags</label>
                                         <select class="form-control select2" multiple="multiple" name="tags[]" data-placeholder="Kies tags" style="width: 100%;">
                                             @foreach($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                <option value="{{ $tag->id }}"
+                                                @foreach($blogpost->tags as $blogpostTags)
+                                                    @if($blogpostTags->id == $tag->id)
+                                                        selected
+                                                    @endif
+                                                @endforeach
+                                                >{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -81,7 +93,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
-                                    <textarea class="textarea" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $blogpost->body }}</textarea>
+                                    <textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $blogpost->body }}</textarea>
                                 </div>
                             </div>
                             <div class="box-footer">
@@ -101,10 +113,21 @@
 @endsection
 @section('footerSection')
     <!-- Select2 -->
-    <script src="{{asset('public/admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('public/admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- CK Editor -->
+    <script src="{{ asset('public/admin/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="{{ asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.select2').select2();
         });
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1')
+            //bootstrap WYSIHTML5 - text editor
+            $('.textarea').wysihtml5()
+        })
     </script>
 @endsection

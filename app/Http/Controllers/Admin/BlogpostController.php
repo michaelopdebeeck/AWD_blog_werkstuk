@@ -82,7 +82,7 @@ class BlogpostController extends Controller
      */
     public function edit($id)
     {
-        $blogpost = blogpost::where('id', $id)->first();
+        $blogpost = blogpost::with('tags', 'categorieen')->where('id', $id)->first();
         $categorieen = categorie::all();
         $tags = tag::all();
         return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));

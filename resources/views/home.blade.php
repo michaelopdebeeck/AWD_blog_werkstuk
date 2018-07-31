@@ -1,23 +1,17 @@
-@extends('layouts.app')
+@extends('user.layouts.index')
+@section('bg-img', asset('public/user/img/home-bg.jpg'))
+@section('title', 'Registreer')
+@section('sub-title', 'Gelieve te registreren')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+@section('main-content')
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    Welcome to my blog!
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </article>
+    <hr>
 @endsection

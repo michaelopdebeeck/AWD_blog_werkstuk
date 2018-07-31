@@ -3,7 +3,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog - Start Bootstrap Theme</title>
+<title>AWD Blog - werkstuk</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ asset('public/user/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">

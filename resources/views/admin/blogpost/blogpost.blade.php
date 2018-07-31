@@ -102,8 +102,7 @@
     <!-- Select2 -->
     <script src="{{ asset('public/admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
     <!-- CK Editor -->
-    <script src="{{ asset('public/admin/bower_components/ckeditor/ckeditor.js') }}"></script>
-    <!-- Bootstrap WYSIHTML5 -->
+    <script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>    <!-- Bootstrap WYSIHTML5 -->
     <script src="{{ asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <script>
         $(document).ready(function () {

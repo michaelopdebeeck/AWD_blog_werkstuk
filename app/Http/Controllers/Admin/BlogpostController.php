@@ -45,14 +45,20 @@ class BlogpostController extends Controller
             'titel' => 'required',
             'subtitel' => 'required',
             'slug' => 'required',
+            'image' => 'required',
             'body' => 'required'
         ]);
-
+        if ($request->hasFile('image')) {
+            $imageNaam = $request->image->store('public');
+        }else{
+            return 'No';
+        }
         $blogpost = new blogpost();
 
         $blogpost->title = $request->titel;
         $blogpost->subtitle = $request->subtitel;
         $blogpost->slug = $request->slug;
+        $blogpost->image = $imageNaam;
         $blogpost->status = $request->status;
         $blogpost->body = $request->body;
         $blogpost->save();
@@ -101,11 +107,15 @@ class BlogpostController extends Controller
             'titel' => 'required',
             'subtitel' => 'required',
             'slug' => 'required',
+            'image' => 'required',
             'body' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            $imageNaam = $request->image->store('public');
+        }
         $blogpost = blogpost::find($id);
-
+        $blogpost->image = $imageNaam;
         $blogpost->title = $request->titel;
         $blogpost->subtitle = $request->subtitel;
         $blogpost->slug = $request->slug;

@@ -2,8 +2,11 @@
 
 // User routes
 Route::group(['namespace' => 'User'], function() {
-    Route::get('/', 'IndexController@index');
-    Route::get('blogpost', 'BlogpostController@index')->name('blogpost');
+    Route::get('/', 'IndexController@index')->name('home');
+    Route::get('blogpost/{slug?}', 'BlogpostController@index')->name('blogpost');
+
+    Route::get('blogpost/tag/{tag}', 'IndexController@tag')->name('tag');
+    Route::get('blogpost/categorie/{categorie}', 'IndexController@categorie')->name('categorie');
 });
 
 
@@ -19,3 +22,7 @@ Route::group(['namespace' => 'Admin'], function() {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

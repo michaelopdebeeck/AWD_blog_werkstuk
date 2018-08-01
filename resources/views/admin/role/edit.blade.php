@@ -20,8 +20,58 @@
                             <div class="box-body">
                                 <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">
-                                        <label for="name">Tag titel</label>
+                                        <label for="name">Rechten titel</label>
                                         <input type="text" class="form-control" id="name" name="name" value="{{ $role->name }}" placeholder="Geef een tag titel in">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label for="name">Blogpost toestemmingen</label>
+                                            @foreach($permissions as $permission)
+                                                @if($permission->for == 'blogpost')
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                                            @foreach($role->permissions as $role_permit)
+                                                                @if ($role_permit->id == $permission->id)
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                            >{{ $permission->name }}</label>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="name">Gebruiker toestemmingen</label>
+                                            @foreach($permissions as $permission)
+                                                @if($permission->for == 'user')
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                                            @foreach($role->permissions as $role_permit)
+                                                            @if ($role_permit->id == $permission->id)
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                            >{{ $permission->name }}</label>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="name">Andere toestemmingen</label>
+                                            @foreach($permissions as $permission)
+                                                @if($permission->for == 'other')
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" name="permission[]" value="{{ $permission->id }}"
+                                                            @foreach($role->permissions as $role_permit)
+                                                                @if ($role_permit->id == $permission->id)
+                                                                    checked
+                                                                @endif
+                                                            @endforeach
+                                                            >{{ $permission->name }}</label>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>

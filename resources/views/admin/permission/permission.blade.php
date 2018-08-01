@@ -26,7 +26,7 @@
                                         <label for="for">Toestemming voor</label>
                                         <select name="for" id="for" class="form-control">
                                             <option selected disabled>Selecteer toestemming voor</option>
-                                            <option value="user">Gebruiker</option>
+                                            <option value="user">User</option>
                                             <option value="blogpost">blogpost</option>
                                             <option value="other">Andere</option>
 

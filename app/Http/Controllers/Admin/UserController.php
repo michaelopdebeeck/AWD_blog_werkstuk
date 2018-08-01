@@ -7,7 +7,7 @@ use App\Model\admin\role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,8 +26,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = admin::all();
-        return view('admin.user.index', compact('admins'));
+        $users = admin::all();
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -49,7 +49,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $request['password'] = bcrypt($request->password);
+        $user = admin::create($request->all());
+
+        //RELATIE NOG AANMAKEN
+
+
+        //$user->roles()->sync($request->role);
+        return redirect(route('user.index'));
     }
 
     /**

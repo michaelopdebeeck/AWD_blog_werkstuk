@@ -14,27 +14,40 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         @include('partials.errrors')
-                        <form role="form" action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="box-body">
                                 <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">
                                         <label for="name">Gebruikersnaam</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Geef een naam in">
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Geef een naam in">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input type="text" class="form-control" id="email" name="email" placeholder="Geef een e-mailadres in">
+                                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Geef een e-mailadres in">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Wachtwoord</label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Geef een wachtwoord in">
+                                        <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}" placeholder="Geef een wachtwoord in">
                                     </div>
                                     <div class="form-group">
-                                        <label for="herhaal_password">Herhaal wachtwoord</label>
-                                        <input type="password" class="form-control" id="herhaal_password" name="herhaal_password" placeholder="Geef uw wachtwoord opnieuw in">
+                                        <label for="password_confirmation">Herhaal wachtwoord</label>
+                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Geef uw wachtwoord opnieuw in">
                                     </div>
-                                    <div class="form-group col-lg-12">
+
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" name="status"
+                                                          @if (old('status') == 1)
+                                                            checked
+                                                          @endif
+                                                          value="1">Status</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
                                         <label>Wijs rechten toe</label>
                                         <div class="row">
                                             @foreach($roles as $role)
@@ -48,7 +61,7 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>
-                                        <a class="btn btn-default" href="{{ route('admin.index') }}">Terug</a>
+                                        <a class="btn btn-default" href="{{ route('user.index') }}">Terug</a>
                                     </div>
                                 </div>
                             </div>

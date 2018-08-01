@@ -9,6 +9,16 @@ use App\Http\Controllers\Controller;
 class PermissionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -87,7 +97,7 @@ class PermissionController extends Controller
         $permission->for = $request->for;
         $permission->save();
 
-        return redirect(route('permission.index'));
+        return redirect(route('permission.index'))->with('message','Toestemming succesvol geupdated');
     }
 
     /**
@@ -98,6 +108,6 @@ class PermissionController extends Controller
      */
     public function destroy(permission $permission) {
         Permission::where('id',$permission->id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message','Permission Deleted Successfully');
     }
 }

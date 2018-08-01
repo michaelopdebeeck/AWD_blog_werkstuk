@@ -16,7 +16,7 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::get('admin', 'IndexController@index')->name('admin');
 
     //User route
-    Route::resource('admin/admin', 'AdminController');
+    Route::resource('admin/user', 'UserController');
 
     //Post route
     Route::resource('admin/blogpost', 'BlogpostController');

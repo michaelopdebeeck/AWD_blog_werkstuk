@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\admin\permission;
 use App\Model\admin\role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,7 +35,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.role.role');
+        $permissions = permission::all();
+        return view('admin.role.role', compact('permissions'));
     }
 
     /**
@@ -76,7 +78,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = role::where('id', $id)->first();
-        return view('admin.role.edit', compact('role'));
+        $permissions = permission::all();
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -93,6 +96,8 @@ class RoleController extends Controller
         $role = role::find($id);
         $role->name = $request->name;
         $role->save();
+        $role->permissions()->sync($request->permission);
+
         return redirect(route('role.index'));
     }
 

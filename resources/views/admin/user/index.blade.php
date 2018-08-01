@@ -14,7 +14,7 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-success" href="{{ route('admin.create') }}">Nieuwe user toevoegen</a>
+                    <a class="btn btn-success" href="{{ route('user.create') }}">Nieuwe user toevoegen</a>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -33,13 +33,13 @@
                         </thead>
                         <tbody>
 
-                        @foreach($admins as $user)
+                        @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td><a class="col-lg-offset-5" href="{{ route('admin.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                <td><a class="col-lg-offset-5" href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                 <td>
-                                    <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('admin.destroy', $user->id) }}" style="display: none;">
+                                    <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('user.destroy', $user->id) }}" style="display: none;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                     </form>

@@ -23,12 +23,15 @@
                 </div>
                 <div class="box">
                     <!-- /.box-header -->
+                    @include('partials.errrors')
+
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Toestemming nummer</th>
                                 <th>Naam</th>
+                                <th>Voor</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -38,6 +41,7 @@
                                 <tr>
                                     <td>{{ $permission->id }}</td>
                                     <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->for }}</td>
                                     <td><a class="col-lg-offset-5" href="{{ route('permission.edit', $permission->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     <td>
                                         <form id="delete-form-{{ $permission->id  }}" method="post" action="{{ route('permission.destroy', $permission->id) }}" style="display: none;">
@@ -57,6 +61,7 @@
                             <tr>
                                 <th>Toestemming nummer</th>
                                 <th>Naam</th>
+                                <th>Voor</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>

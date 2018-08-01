@@ -34,21 +34,23 @@
                                         <label for="herhaal_password">Herhaal wachtwoord</label>
                                         <input type="password" class="form-control" id="herhaal_password" name="herhaal_password" placeholder="Geef uw wachtwoord opnieuw in">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="role">Wijs rechten toe</label>
-                                        <select name="role" id="role" class="form-control">
-                                            <option value="1">Publisher</option>
-                                            <option value="0">Editor</option>
-                                            <option value="3">Writer</option>
-                                        </select>
+                                    <div class="form-group col-lg-12">
+                                        <label>Wijs rechten toe</label>
+                                        <div class="row">
+                                            @foreach($roles as $role)
+                                                <div class="col-lg-3">
+                                                    <div class="checkbox">
+                                                        <label><input type="checkbox" name="role[]" value="{{ $role->id }}">{{ $role->name }}</label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>
                                         <a class="btn btn-default" href="{{ route('admin.index') }}">Terug</a>
                                     </div>
                                 </div>
-
                             </div>
                             <!-- /.box-body -->
                         </form>

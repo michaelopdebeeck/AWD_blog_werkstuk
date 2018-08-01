@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\admin\admin;
+use App\Model\admin\role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,7 +37,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.user.user');
+        $roles = role::all();
+        return view('admin.user.user', compact('roles'));
     }
 
     /**

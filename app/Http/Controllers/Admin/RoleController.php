@@ -75,7 +75,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = tag::where('id', $id)->first();
+        $role = role::where('id', $id)->first();
         return view('admin.role.edit', compact('role'));
     }
 
@@ -88,12 +88,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id) {
         $this->validate($request, [
-            'name' => 'required|max:50|unique:roles'
+            'name' => 'required|max:50|'
         ]);
-        $role = tag::find($id);
+        $role = role::find($id);
         $role->name = $request->name;
         $role->save();
-        return redirect(route('tag.index'));
+        return redirect(route('role.index'));
     }
 
     /**

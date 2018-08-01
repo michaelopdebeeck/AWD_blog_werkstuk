@@ -7,14 +7,14 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Blogposts<small>lijst van alle blogposts</small></h1>
+            <h1>Rechten<small>lijst van alle rechten</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-success" href="{{ route('blogpost.create') }}">Nieuwe blogpost toevoegen</a>
+                    <a class="btn btn-success" href="{{ route('role.create') }}">Nieuwe rechten toevoegen</a>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -27,45 +27,36 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Blogpost nummer</th>
-                                <th>Titel</th>
-                                <th>Subtitel</th>
-                                <th>Slug</th>
-                                <th>Aangemaakt op</th>
+                                <th>Tag nummer</th>
+                                <th>Naam</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($blogposts as $blogpost)
+                            @foreach($roles as $role)
                                 <tr>
-                                    <td>{{ $blogpost->id }}</td>
-                                    <td>{{ $blogpost->title }}</td>
-                                    <td>{{ $blogpost->subtitle }}</td>
-                                    <td>{{ $blogpost->slug }}</td>
-                                    <td>{{ $blogpost->created_at }}</td>
-                                    <td><a class="col-lg-offset-5" href="{{ route('blogpost.edit', $blogpost->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td><a class="col-lg-offset-5" href="{{ route('role.edit', $role->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $blogpost->id  }}" method="post" action="{{ route('blogpost.destroy', $blogpost->id) }}" style="display: none;">
+                                        <form id="delete-form-{{ $role->id  }}" method="post" action="{{ route('role.destroy', $role->id) }}" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
-                                        <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de blogpost wilt verwijderen?')) {
-                                            event.preventDefault(); document.getElementById('delete-form-{{ $blogpost->id }}').submit();
-                                        } else {
-                                            event.preventDefault();
-                                        }"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de tag wilt verwijderen?')) {
+                                                event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();
+                                                } else {
+                                                event.preventDefault();
+                                                }"><span class="glyphicon glyphicon-trash"></span></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Blogpost nummer</th>
-                                <th>Titel</th>
-                                <th>Subtitel</th>
-                                <th>Slug</th>
-                                <th>Aangemaakt op</th>
+                                <th>Tag nummer</th>
+                                <th>Naam</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>

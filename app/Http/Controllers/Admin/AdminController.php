@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\admin\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+        $admins = admin::all();
+        return view('admin.user.index', compact('admins'));
     }
 
     /**

@@ -1,20 +1,11 @@
 @extends('admin.layouts.index')
 
 @section('main-content')
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Blank page
-                <small>it all starts here</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
-            </ol>
+            <h1>Users<small>lijst van alle users</small></h1>
         </section>
 
         <!-- Main content -->
@@ -23,22 +14,56 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
-
+                    <a class="btn btn-success" href="{{ route('admin.create') }}">Nieuwe user toevoegen</a>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
                             <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fa fa-times"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    Start creating your amazing application!
-                </div>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Categorie nummer</th>
+                            <th>Naam</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($admins as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td><a class="col-lg-offset-5" href="{{ route('admin.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                <td>
+                                    <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('admin.destroy', $user->id) }}" style="display: none;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form>
+                                    <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de categorie wilt verwijderen?')) {
+                                            event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();
+                                            } else {
+                                            event.preventDefault();
+                                            }"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Categorie nummer</th>
+                            <th>Naam</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </tfoot>
+                    </table>                </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    Footer
+
                 </div>
                 <!-- /.box-footer-->
             </div>

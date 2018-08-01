@@ -16,7 +16,7 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::get('admin', 'IndexController@index')->name('admin');
 
     //User route
-    Route::resource('admin/user', 'UserController');
+    Route::resource('admin/admin', 'AdminController');
 
     //Post route
     Route::resource('admin/blogpost', 'BlogpostController');
@@ -27,6 +27,8 @@ Route::group(['namespace' => 'Admin'], function() {
     //Categorie route
     Route::resource('admin/categorie', 'CategorieController');
 
+    //Role route
+    Route::resource('admin/role', 'RoleController');
 
     //Admin Auth Routes
     Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('admin.login');

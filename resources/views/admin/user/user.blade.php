@@ -1,85 +1,56 @@
 @extends('admin.layouts.index')
-
 @section('main-content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Text Editors
-                <small>Advanced form element</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Forms</a></li>
-                <li class="active">Editors</li>
-            </ol>
+            <h1>Nieuwe user<small>maak een nieuwe user aan</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Nieuwe blogpost</h3>
-                        </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        @include('partials.errrors')
+                        <form role="form" action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="box-body">
-                                <div class="col-lg-6">
+                                <div class="col-lg-offset-1 col-lg-5">
                                     <div class="form-group">
-                                        <label for="titel">Titel</label>
-                                        <input type="text" class="form-control" id="titel" name="titel" placeholder="Geef een titel in">
+                                        <label for="name">Gebruikersnaam</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Geef een naam in">
                                     </div>
                                     <div class="form-group">
-                                        <label for="subtitel">Subtitel</label>
-                                        <input type="text" class="form-control" id="subtitel" name="subtitel" placeholder="Geef een subtitel in">
+                                        <label for="email">E-mail</label>
+                                        <input type="text" class="form-control" id="email" name="email" placeholder="Geef een e-mailadres in">
                                     </div>
                                     <div class="form-group">
-                                        <label for="slug">Slug</label>
-                                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug van de blogpost">
+                                        <label for="password">Wachtwoord</label>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Geef een wachtwoord in">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="herhaal_password">Herhaal wachtwoord</label>
+                                        <input type="password" class="form-control" id="herhaal_password" name="herhaal_password" placeholder="Geef uw wachtwoord opnieuw in">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="role">Wijs rechten toe</label>
+                                        <select name="role" id="role" class="form-control">
+                                            <option value="1">Publisher</option>
+                                            <option value="0">Editor</option>
+                                            <option value="3">Writer</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Voeg toe</button>
+                                        <a class="btn btn-default" href="{{ route('admin.index') }}">Terug</a>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="image">File input</label>
-                                        <input type="file" name="image"id="image">
-                                    </div>
-                                    <br>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="status"> Publiceer blogpost?
-                                        </label>
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- /.box-body -->
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Tekst blogpost</h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                                title="Collapse">
-                                            <i class="fa fa-minus"></i></button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <form>
-                                <textarea class="textarea" name="blogpost-tekst" placeholder="Place some text here"
-                                          style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
                         </form>
                     </div>
                     <!-- /.box -->

@@ -36,7 +36,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
                             @foreach($categorieen as $categorie)
                                 <tr>
                                     <td>{{ $categorie->id }}</td>
@@ -72,7 +71,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    Footer
+
                 </div>
                 <!-- /.box-footer-->
             </div>

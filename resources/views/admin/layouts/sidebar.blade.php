@@ -36,7 +36,8 @@
                     <li class="active"><a href="{{ route('blogpost.index' )}}"><i class="fa fa-circle-o"></i>Blogposts</a></li>
                     <li class="active"><a href="{{ route('categorie.index' )}}"><i class="fa fa-circle-o"></i>Categorieën</a></li>
                     <li class="active"><a href="{{ route('tag.index' )}}"><i class="fa fa-circle-o"></i>Tags</a></li>
-                    <li class="active"><a href="{{ route('user.index' )}}"><i class="fa fa-circle-o"></i>Users</a></li>
+                    <li class="active"><a href="{{ route('admin.index' )}}"><i class="fa fa-circle-o"></i>Users</a></li>
+                    <li class="active"><a href="{{ route('role.index' )}}"><i class="fa fa-circle-o"></i>Rechten</a></li>
                 </ul>
             </li>
 

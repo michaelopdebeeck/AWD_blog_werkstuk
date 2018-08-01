@@ -22,6 +22,39 @@
                                         <label for="name">Rechten titel</label>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Geef een tag titel in">
                                     </div>
+
+                                    <div class="col-lg-6">
+                                        <label for="name">Blogpost toestemmingen</label>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="name">Gebruiker toestemmingen</label>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Create</label>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Voeg toe</button>
                                         <a class="btn btn-default" href="{{ route('role.index') }}">Terug</a>

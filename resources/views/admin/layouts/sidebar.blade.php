@@ -38,6 +38,7 @@
                     <li class="active"><a href="{{ route('tag.index' )}}"><i class="fa fa-circle-o"></i>Tags</a></li>
                     <li class="active"><a href="{{ route('admin.index' )}}"><i class="fa fa-circle-o"></i>Users</a></li>
                     <li class="active"><a href="{{ route('role.index' )}}"><i class="fa fa-circle-o"></i>Rechten</a></li>
+                    <li class="active"><a href="{{ route('permission.index' )}}"><i class="fa fa-circle-o"></i>Toestemmingen</a></li>
                 </ul>
             </li>
 

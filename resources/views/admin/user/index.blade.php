@@ -25,7 +25,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Categorie nummer</th>
+                            <th>Gebruikersnummer</th>
                             <th>Naam</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -54,7 +54,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>Categorie nummer</th>
+                            <th>Gebruikersnummer</th>
                             <th>Naam</th>
                             <th>Edit</th>
                             <th>Delete</th>

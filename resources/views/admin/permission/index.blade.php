@@ -7,14 +7,14 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Rechten<small>lijst van alle rechten</small></h1>
+            <h1>Toestemmingen<small>lijst van alle toestemmingen</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-success" href="{{ route('role.create') }}">Nieuwe rechten toevoegen</a>
+                    <a class="btn btn-success" href="{{ route('permission.create') }}">Nieuwe toestemmingen toevoegen</a>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -27,25 +27,25 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Rol nummer</th>
+                                <th>Toestemming nummer</th>
                                 <th>Naam</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($roles as $role)
+                            @foreach($permissions as $permission)
                                 <tr>
-                                    <td>{{ $role->id }}</td>
-                                    <td>{{ $role->name }}</td>
-                                    <td><a class="col-lg-offset-5" href="{{ route('role.edit', $role->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    <td>{{ $permission->id }}</td>
+                                    <td>{{ $permission->name }}</td>
+                                    <td><a class="col-lg-offset-5" href="{{ route('permission.edit', $permission->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $role->id  }}" method="post" action="{{ route('role.destroy', $role->id) }}" style="display: none;">
+                                        <form id="delete-form-{{ $permission->id  }}" method="post" action="{{ route('permission.destroy', $permission->id) }}" style="display: none;">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
                                         <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de tag wilt verwijderen?')) {
-                                                event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();
+                                                event.preventDefault(); document.getElementById('delete-form-{{ $permission->id }}').submit();
                                                 } else {
                                                 event.preventDefault();
                                                 }"><span class="glyphicon glyphicon-trash"></span></a>
@@ -55,7 +55,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Rol nummer</th>
+                                <th>Toestemming nummer</th>
                                 <th>Naam</th>
                                 <th>Edit</th>
                                 <th>Delete</th>

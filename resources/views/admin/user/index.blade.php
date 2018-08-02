@@ -14,7 +14,9 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-success" href="{{ route('user.create') }}">Nieuwe user toevoegen</a>
+                    @can('admins.create', Auth::user())
+                        <a class="btn btn-success" href="{{ route('user.create') }}">Nieuwe user toevoegen</a>
+                    @endcan
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -30,8 +32,12 @@
                             <th>Naam</th>
                             <th>Toegekende rechten</th>
                             <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            @can('admins.update', Auth::user())
+                                <th>Edit</th>
+                            @endcan
+                            @can('admins.delete', Auth::user())
+                                <th>Delete</th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
@@ -46,18 +52,22 @@
                                     @endforeach
                                 </td>
                                 <td>{{ $user->status? 'Actief' : 'Niet actief' }}</td>
-                                <td><a class="col-lg-offset-5" href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                <td>
-                                    <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('user.destroy', $user->id) }}" style="display: none;">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                    </form>
-                                    <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de categorie wilt verwijderen?')) {
-                                            event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();
-                                            } else {
-                                            event.preventDefault();
-                                            }"><span class="glyphicon glyphicon-trash"></span></a>
-                                </td>
+                                @can('admins.update', Auth::user())
+                                    <td><a class="col-lg-offset-5" href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                @endcan
+                                @can('admins.delete', Auth::user())
+                                    <td>
+                                        <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('user.destroy', $user->id) }}" style="display: none;">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
+                                        <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de categorie wilt verwijderen?')) {
+                                                event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();
+                                                } else {
+                                                event.preventDefault();
+                                                }"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </td>
+                                @endcan
                             </tr>
                         @endforeach
                         </tbody>
@@ -67,8 +77,12 @@
                             <th>Naam</th>
                             <th>Toegekende rechten</th>
                             <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            @can('admins.update', Auth::user())
+                                <th>Edit</th>
+                            @endcan
+                            @can('admins.delete', Auth::user())
+                                <th>Delete</th>
+                            @endcan
                         </tr>
                         </tfoot>
                     </table>

@@ -23,9 +23,8 @@
                 </div>
                 <div class="box">
                     <!-- /.box-header -->
-                    @include('partials.errrors')
-
                     <div class="box-body">
+                        @include('partials.errrors')
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>

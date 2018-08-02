@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\user\categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CategorieController extends Controller
 {
@@ -23,10 +24,13 @@ class CategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categorieen = categorie::all();
-        return view('admin.categorie.index', compact('categorieen'));
+    public function index() {
+        if (Auth::user()->can('blogposts.categorie')) {
+            $categorieen = categorie::all();
+            return view('admin.categorie.index', compact('categorieen'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -34,9 +38,12 @@ class CategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.categorie.categorie');
+    public function create() {
+        if (Auth::user()->can('blogposts.categorie')) {
+            return view('admin.categorie.categorie');
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -45,8 +52,7 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'slug' => 'required'
@@ -79,10 +85,13 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $categorie = categorie::where('id', $id)->first();
-        return view('admin.categorie.edit', compact('categorie'));
+    public function edit($id) {
+        if (Auth::user()->can('blogposts.categorie')) {
+            $categorie = categorie::where('id', $id)->first();
+            return view('admin.categorie.edit', compact('categorie'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -92,8 +101,7 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $this->validate($request, [
             'name' => 'required',
             'slug' => 'required'
@@ -106,7 +114,7 @@ class CategorieController extends Controller
 
         $categorie->save();
 
-        return redirect(route('categorie.index'));
+        return redirect(route('categorie.index'))->with('message', 'Categorie is succesvol geupdated');
     }
 
     /**
@@ -118,6 +126,6 @@ class CategorieController extends Controller
     public function destroy($id)
     {
         categorie::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Categorie is succesvol verwijderd');;
     }
 }

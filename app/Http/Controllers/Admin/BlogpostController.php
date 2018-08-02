@@ -7,6 +7,7 @@ use App\Model\user\categorie;
 use App\Model\user\tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlogpostController extends Controller
 {
@@ -36,11 +37,14 @@ class BlogpostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categorieen = categorie::all();
-        $tags = tag::all();
-        return view('admin.blogpost.blogpost', compact('categorieen', 'tags'));
+    public function create() {
+        if (Auth::user()->can('blogposts.create')) {
+            $categorieen = categorie::all();
+            $tags = tag::all();
+            return view('admin.blogpost.blogpost', compact('categorieen', 'tags'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -96,12 +100,16 @@ class BlogpostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $blogpost = blogpost::with('tags', 'categorieen')->where('id', $id)->first();
-        $categorieen = categorie::all();
-        $tags = tag::all();
-        return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));
+    public function edit($id) {
+        if (Auth::user()->can('blogposts.edit')) {
+            $blogpost = blogpost::with('tags', 'categorieen')->where('id', $id)->first();
+            $categorieen = categorie::all();
+            $tags = tag::all();
+            return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));
+        } else {
+            return redirect(route('admin'));
+        }
+
     }
 
     /**
@@ -111,8 +119,7 @@ class BlogpostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $this->validate($request, [
             'titel' => 'required',
             'subtitel' => 'required',
@@ -136,7 +143,7 @@ class BlogpostController extends Controller
 
         $blogpost->save();
 
-        return redirect(route('blogpost.index'));
+        return redirect(route('blogpost.index'))->with('message', 'Blogpost is succesvol geupdated');
     }
 
     /**
@@ -148,6 +155,6 @@ class BlogpostController extends Controller
     public function destroy($id)
     {
         blogpost::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Blogpost is succesvol verwijderd');;
     }
 }

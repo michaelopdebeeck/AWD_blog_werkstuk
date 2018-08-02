@@ -14,7 +14,10 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-success" href="{{ route('blogpost.create') }}">Nieuwe blogpost toevoegen</a>
+                    @can('blogposts.create', Auth::user())
+                        <a class="btn btn-success" href="{{ route('blogpost.create') }}">Nieuwe blogpost toevoegen</a>
+                    @endcan
+                        <br>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -22,8 +25,9 @@
                     </div>
                 </div>
                 <div class="box">
-                    <!-- /.box-header -->
+                <!-- /.box-header -->
                     <div class="box-body">
+                        @include('partials.errrors')
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -32,8 +36,12 @@
                                 <th>Subtitel</th>
                                 <th>Slug</th>
                                 <th>Aangemaakt op</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                @can('blogposts.update', Auth::user())
+                                    <th>Edit</th>
+                                @endcan
+                                @can('blogposts.delete', Auth::user())
+                                    <th>Delete</th>
+                                @endcan
                             </tr>
                             </thead>
                             <tbody>
@@ -44,18 +52,22 @@
                                     <td>{{ $blogpost->subtitle }}</td>
                                     <td>{{ $blogpost->slug }}</td>
                                     <td>{{ $blogpost->created_at }}</td>
-                                    <td><a class="col-lg-offset-5" href="{{ route('blogpost.edit', $blogpost->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                    <td>
-                                        <form id="delete-form-{{ $blogpost->id  }}" method="post" action="{{ route('blogpost.destroy', $blogpost->id) }}" style="display: none;">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                        </form>
-                                        <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de blogpost wilt verwijderen?')) {
-                                            event.preventDefault(); document.getElementById('delete-form-{{ $blogpost->id }}').submit();
-                                        } else {
-                                            event.preventDefault();
-                                        }"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </td>
+                                    @can('blogposts.update', Auth::user())
+                                        <td><a class="col-lg-offset-5" href="{{ route('blogpost.update', $blogpost->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    @endcan
+                                    @can('blogposts.delete', Auth::user())
+                                        <td>
+                                            <form id="delete-form-{{ $blogpost->id  }}" method="post" action="{{ route('blogpost.destroy', $blogpost->id) }}" style="display: none;">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                            </form>
+                                            <a class="col-lg-offset-5" href="#" onclick="if(confirm('Bent u zeker dat u de blogpost wilt verwijderen?')) {
+                                                    event.preventDefault(); document.getElementById('delete-form-{{ $blogpost->id }}').submit();
+                                                    } else {
+                                                    event.preventDefault();
+                                                    }"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                             </tbody>
@@ -66,8 +78,12 @@
                                 <th>Subtitel</th>
                                 <th>Slug</th>
                                 <th>Aangemaakt op</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                @can('blogposts.update', Auth::user())
+                                    <th>Edit</th>
+                                @endcan
+                                @can('blogposts.delete', Auth::user())
+                                    <th>Delete</th>
+                                @endcan
                             </tr>
                             </tfoot>
                         </table>

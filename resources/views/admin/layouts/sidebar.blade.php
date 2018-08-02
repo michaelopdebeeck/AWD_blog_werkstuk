@@ -8,7 +8,7 @@
                 <img src="{{ asset('public/admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Michaël Opdebeeck</p>
+                <p>{{ Auth::user()->name }}</p>
             </div>
         </div>
         <!-- search form -->
@@ -34,8 +34,12 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('blogpost.index' )}}"><i class="fa fa-circle-o"></i>Blogposts</a></li>
-                    <li class="active"><a href="{{ route('categorie.index' )}}"><i class="fa fa-circle-o"></i>Categorieën</a></li>
-                    <li class="active"><a href="{{ route('tag.index' )}}"><i class="fa fa-circle-o"></i>Tags</a></li>
+                    @can('blogposts.categorie', Auth::user())
+                        <li class="active"><a href="{{ route('categorie.index' )}}"><i class="fa fa-circle-o"></i>Categorieën</a></li>
+                    @endcan
+                    @can('blogposts.tag', Auth::user())
+                        <li class="active"><a href="{{ route('tag.index' )}}"><i class="fa fa-circle-o"></i>Tags</a></li>
+                    @endcan
                     <li class="active"><a href="{{ route('user.index' )}}"><i class="fa fa-circle-o"></i>Users</a></li>
                     <li class="active"><a href="{{ route('role.index' )}}"><i class="fa fa-circle-o"></i>Rechten</a></li>
                     <li class="active"><a href="{{ route('permission.index' )}}"><i class="fa fa-circle-o"></i>Toestemmingen</a></li>

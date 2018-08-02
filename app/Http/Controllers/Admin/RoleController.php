@@ -54,6 +54,7 @@ class RoleController extends Controller
         $role = new role();
         $role->name = $request->name;
         $role->save();
+        $role->permissions()->sync($request->permission);
 
         return redirect(route('role.index'));
     }
@@ -98,7 +99,7 @@ class RoleController extends Controller
         $role->save();
         $role->permissions()->sync($request->permission);
 
-        return redirect(route('role.index'));
+        return redirect(route('role.index'))->with('message', 'rechten zijn succesvol geupdated');;
     }
 
     /**
@@ -110,6 +111,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         role::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'rechten zijn succesvol verwijderd');;
     }
 }

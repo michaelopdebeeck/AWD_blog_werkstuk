@@ -23,10 +23,13 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $tags = tag::all();
-        return view('admin.tag.index', compact('tags'));
+    public function index() {
+        if (Auth::user()->can('blogposts.tag')) {
+            $tags = tag::all();
+            return view('admin.tag.index', compact('tags'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -34,9 +37,13 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.tag.tag');
+    public function create() {
+        if (Auth::user()->can('blogposts.tag')) {
+            return view('admin.tag.tag');
+        } else {
+            return redirect(route('admin'));
+
+        }
     }
 
     /**
@@ -79,10 +86,13 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $tag = tag::where('id', $id)->first();
-        return view('admin.tag.edit', compact('tag'));
+    public function edit($id) {
+        if (Auth::user()->can('blogposts.tag')) {
+            $tag = tag::where('id', $id)->first();
+            return view('admin.tag.edit', compact('tag'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -106,7 +116,7 @@ class TagController extends Controller
 
         $tag->save();
 
-        return redirect(route('tag.index'));
+        return redirect(route('tag.index'))->with('message', 'Tag is succesvol geupdated');;
     }
 
     /**
@@ -118,6 +128,6 @@ class TagController extends Controller
     public function destroy($id)
     {
         tag::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Tag is succesvol verwijderd');
     }
 }

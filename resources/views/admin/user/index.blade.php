@@ -23,10 +23,13 @@
                 </div>
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
+                        @include('partials.errrors')
                         <thead>
                         <tr>
                             <th>Gebruikersnummer</th>
                             <th>Naam</th>
+                            <th>Toegekende rechten</th>
+                            <th>Status</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -37,6 +40,12 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
+                                <td>
+                                    @foreach($user->roles as $role)
+                                    {{ $role->name }},
+                                    @endforeach
+                                </td>
+                                <td>{{ $user->status? 'Actief' : 'Niet actief' }}</td>
                                 <td><a class="col-lg-offset-5" href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                 <td>
                                     <form id="delete-form-{{ $user->id  }}" method="post" action="{{ route('user.destroy', $user->id) }}" style="display: none;">
@@ -56,11 +65,14 @@
                         <tr>
                             <th>Gebruikersnummer</th>
                             <th>Naam</th>
+                            <th>Toegekende rechten</th>
+                            <th>Status</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </tfoot>
-                    </table>                </div>
+                    </table>
+                </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
 

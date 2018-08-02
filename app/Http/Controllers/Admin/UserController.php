@@ -24,10 +24,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = admin::all();
-        return view('admin.user.index', compact('users'));
+    public function index() {
+            $users = admin::all();
+            return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -35,10 +34,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $roles = role::all();
-        return view('admin.user.user', compact('roles'));
+    public function create() {
+        if (Auth::user()->can('admins.create')) {
+            $roles = role::all();
+            return view('admin.user.user', compact('roles'));
+        } else {
+            return redirect(route('admin'));
+        }
     }
 
     /**
@@ -78,11 +80,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $user = admin::find($id);
+    public function edit($id) {
+        if (Auth::user()->can('admins.update')) {
+            $user = admin::find($id);
         $roles = role::all();
         return view('admin.user.edit',compact('user','roles'));
+    } else {
+            return redirect(route('home'));
+        }
     }
 
     /**
@@ -92,8 +97,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',

@@ -5,70 +5,59 @@ namespace App\Policies;
 use App\Model\admin\admin;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BlogpostPolicy
+class AdminPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the blogpost.
+     * Determine whether the user can view the admin.
      *
      * @param  \App\Model\user\User  $user
-     * @param  \App\blogpost  $blogpost
+     * @param  \App\admin  $admin
      * @return mixed
      */
-    public function view(admin $user, blogpost $blogpost)
+    public function view(admin $user)
     {
         //
     }
 
     /**
-     * Determine whether the user can create blogposts.
+     * Determine whether the user can create admins.
      *
      * @param  \App\Model\user\User  $user
      * @return mixed
      */
     public function create(admin $user) {
-        return $this->getPermission($user, 1);
+        return $this->getPermission($user, 4);
     }
 
     /**
-     * Determine whether the user can update the blogpost.
+     * Determine whether the user can update the admin.
      *
      * @param  \App\Model\user\User  $user
-     * @param  \App\blogpost  $blogpost
+     * @param  \App\admin  $admin
      * @return mixed
      */
     public function update(admin $user) {
-        return $this->getPermission($user, 2);
+        return $this->getPermission($user, 5);
     }
 
     /**
-     * Determine whether the user can delete the blogpost.
+     * Determine whether the user can delete the admin.
      *
      * @param  \App\Model\user\User  $user
-     * @param  \App\blogpost  $blogpost
+     * @param  \App\admin  $admin
      * @return mixed
      */
     public function delete(admin $user) {
-        return $this->getPermission($user, 3);
-    }
-
-    public function publish(admin $user) {
-    return $this->getPermission($user, 7);
-}
-
-    public function categorie(admin $user) {
-        return $this->getPermission($user, 9);
-    }
-    public function tag(admin $user) {
-        return $this->getPermission($user, 8);
+        return $this->getPermission($user, 6);
     }
 
     /**
-     * Determine whether the user can restore the blogpost.
+     * Determine whether the user can restore the admin.
      *
      * @param  \App\Model\user\User  $user
-     * @param  \App\blogpost  $blogpost
+     * @param  \App\admin  $admin
      * @return mixed
      */
     public function restore(admin $user)
@@ -77,10 +66,10 @@ class BlogpostPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the blogpost.
+     * Determine whether the user can permanently delete the admin.
      *
      * @param  \App\Model\user\User  $user
-     * @param  \App\blogpost  $blogpost
+     * @param  \App\admin  $admin
      * @return mixed
      */
     public function forceDelete(admin $user)

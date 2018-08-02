@@ -101,15 +101,14 @@ class BlogpostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        if (Auth::user()->can('blogposts.edit')) {
+        if (Auth::user()->can('blogposts.update')) {
             $blogpost = blogpost::with('tags', 'categorieen')->where('id', $id)->first();
-            $categorieen = categorie::all();
-            $tags = tag::all();
-            return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));
-        } else {
+        $categorieen = categorie::all();
+        $tags = tag::all();
+        return view('admin.blogpost.edit', compact('blogpost','categorieen', 'tags'));
+    } else {
             return redirect(route('admin'));
         }
-
     }
 
     /**

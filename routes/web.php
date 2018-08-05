@@ -8,7 +8,6 @@ Route::group(['namespace' => 'User'], function() {
     Route::get('blogpost/tag/{tag}', 'IndexController@tag')->name('tag');
     Route::get('blogpost/categorie/{categorie}', 'IndexController@categorie')->name('categorie');
 
-    Route::get('contact', 'ContactController@index')->name('contact');
     Route::get('over-mij', 'AboutController@index')->name('over-mij');
 });
 
@@ -40,6 +39,11 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('admin/login', 'Auth\LoginController@login');
 });
+
+Route::get('import', 'ImportController@getImport')->name('import');
+Route::post('/import_parse', 'ImportController@parseImport')->name('import_parse');
+Route::post('/import_process', 'ImportController@processImport')->name('import_process');
+
 
 Auth::routes();
 

@@ -15,9 +15,6 @@
                     <a class="nav-link" href="{{ route('over-mij') }}">Over mij</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
-                </li>
-                <li class="nav-item">
                     @if(Auth::guest())
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
 

@@ -7,6 +7,9 @@ Route::group(['namespace' => 'User'], function() {
 
     Route::get('blogpost/tag/{tag}', 'IndexController@tag')->name('tag');
     Route::get('blogpost/categorie/{categorie}', 'IndexController@categorie')->name('categorie');
+
+    Route::get('contact', 'ContactController@index')->name('contact');
+    Route::get('over-mij', 'AboutController@index')->name('over-mij');
 });
 
 //Admin routes

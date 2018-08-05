@@ -74,6 +74,7 @@ class BlogpostController extends Controller
         $blogpost->slug = $request->slug;
         $blogpost->image = $imageNaam;
         $blogpost->status = $request->status;
+        $blogpost->posted_by = Auth::user()->id;
         $blogpost->body = $request->body;
         $blogpost->save();
         $blogpost->tags()->sync($request->tags);
